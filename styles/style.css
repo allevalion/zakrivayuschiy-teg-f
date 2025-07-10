@@ -1,9 +1,8 @@
-/* Здесь вы напишете основную часть стилей страницы.
+/*
 
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
+Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
 ✦ like-icon — для svg-иконки анимированного сердца
 ✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
 ✦ card__icon-button — для кнопки, оборачивающей иконку
 ✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
 ✦ button__text — для обозначения текстового элемента внутри кнопки
@@ -13,4 +12,297 @@
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  font-family: var(--font-main);
+  font-variation-settings: 'wght' var(--card-text-weight);
+  background-image: var(--background-gradient);
+  background-attachment: fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-width {
+  inline-size: var(--content-width);
+}
+
+.header {
+  display: flex;
+  text-transform: uppercase;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color);
+  block-size: 368px;
+  border: var(--border);
+  margin-block-start: 100px;
+  font-family: var(--font-accent);
+  gap: clamp(10px, 4vw, 20px);
+  margin-block-end: 98px;
+}
+
+.header__title {
+  font-size: clamp(49px, 8vw, 65px);
+}
+
+.header__subtitle {
+  font-size: clamp(var(--text-size-small), 4vw, 23px);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sections-gap);
+}
+
+.card {
+  background-color: var(--bg-color);
+  border: var(--card-border);
+}
+
+.card__title {
+  margin: 4px 10px;
+  font-variation-settings: 'wght' var(--card-title-weight);
+  font-size: var(--text-size);
+}
+
+.card__image-container {
+  margin-block-end: 25px;
+  position: relative;
+}
+
+.card__image-label {
+  position: absolute;
+  mix-blend-mode: hard-light;
+  inset-inline-end: 25px;
+  opacity: 0.5;
+  inset-block-start: 25px;
+  font-family: var(--font-accent);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--text-size-small);
+  text-transform: uppercase;
+  text-shadow: 0 0 1px var(--card-label-color);
+}
+
+.card__image {
+  width: 100%;
+  max-width: 696px;
+  max-height: 696px;
+  block-size: auto;
+  display: block;
+}
+
+.card:nth-of-type(1) .card__image,
+.card:nth-of-type(8) .card__image {
+  filter: brightness(1.2) contrast(1.1);
+}
+
+.card:nth-of-type(2) .card__image {
+  filter: grayscale(1);
+}
+
+.card:nth-of-type(3) .card__image {
+  filter: sepia(0.8);
+}
+
+.card:nth-of-type(4) .card__image {
+  filter: blur(2px);
+}
+
+.card:nth-of-type(5) .card__image {
+  filter: saturate(2);
+}
+
+.card:nth-of-type(6) .card__image {
+  filter: hue-rotate(160deg);
+}
+
+.card:nth-of-type(7) .card__image {
+  filter: invert(0.9) contrast(1.5) saturate(0.6);
+}
+
+.card__text {
+  font-size: var(--text-size);
+  margin: 25px;
+  line-height: 21px;
+}
+
+.card__buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0 25px 25px auto;
+}
+
+.card__icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  outline: 2px solid transparent;
+  transition: outline 0.3s ease;
+  cursor: pointer;
+}
+
+.like-icon {
+  inline-size: 39px;
+  block-size: 36px;
+}
+
+.like-icon,
+.like-icon .heart {
+  transform-origin: center;
+}
+
+.like-icon:focus-visible {
+  outline: var(--button-border);
+}
+
+.button__text {
+  position: relative;
+  z-index: 1;
+  mix-blend-mode: difference;
+}
+
+.button {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  border: var(--button-border);
+  font-family: var(--font-accent);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--text-size-small);
+  line-height: var(--text-line-height);
+  transition: var(--button-focus-transition);
+  cursor: pointer;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  background-color: var(--text-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: var(--button-hover-transform);
+  z-index: -1;
+}
+
+.button:hover::before {
+  transform: scaleX(1);
+}
+
+.button,
+.like-icon:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: var(--button-hover-shadow);
+}
+
+.card__like-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12.5px 37px;
+  block-size: 38px;
+  inline-size: 130px;
+}
+
+.save__button {
+  display: inline-flex;
+  align-items: center;
+  padding: 15px 18px;
+  margin-block-end: 100px;
+}
+
+.save__icon {
+  margin-right: 8px;
+}
+
+.save-dialog[open] {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: 20px;
+  row-gap: 42.5px;
+  padding: 30px;
+  background-color: var(--bg-color);
+  border: var(--border);
+  max-width: 353px;
+  width: 100%;
+}
+
+.save-dialog[open]::backdrop {
+  background-color: rgb(0 0 0 / 0.75);
+}
+
+body:has(.save-dialog[open]) {
+  overflow: hidden;
+  padding-right: var(--scrollbar-width, 17px);
+}
+
+.save-dialog__icon {
+  grid-column: 1;
+}
+
+.save-dialog__title {
+  grid-column: 2;
+  grid-row: 1;
+  font-family: var(--font-accent);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--text-size-small);
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.save-dialog__button {
+  grid-column: 1 / -1;
+  justify-self: center;
+  text-transform: uppercase;
+  padding: 12.5px 132.5px;
+  max-width: 293px;
+}
+
+@supports ((text-stroke: 1px #fff) or (-webkit-text-stroke: 1px #fff)) {
+  .card__image-label {
+    -webkit-text-stroke: 1px var(--card-label-color);
+    text-stroke: 1px var(--card-label-color);
+    text-shadow: none;
+  }
+}
+
+@media (width <= 376px) {
+  .header {
+    margin-block-end: 100px;
+    block-size: 327px;
+  }
+
+  .card__title {
+    width: 100%;
+    max-width: 351px;
+  }
+
+  .save__button {
+    flex-direction: column;
+    gap: 8px;
+    white-space: normal;
+    text-align: center;
+    padding: 17px 20px;
+  }
+
+  .save__icon {
+    inline-size: 28px;
+    block-size: 28px;
+  }
 }
