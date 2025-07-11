@@ -6,8 +6,8 @@
   --scrollbar-width: 17px;
 
   /* Шрифты */
-  --font-main: 'Inter', sans-serif;
-  --font-accent: 'PressStart2P', monospace;
+  --font-main: 'Inter';
+  --font-accent: 'PressStart2P';
   --font-weight-normal: 400;
 
   /* Настройки текста */
